@@ -1,0 +1,99 @@
+name: Android CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+  # Lets you run the workflow by hand from the Actions tab.
+  workflow_dispatch:
+
+# Cancel a run when the same branch is pushed again — a superseded run is one
+# nobody will read.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# Nothing here writes to the repo; keep the token read-only.
+permissions:
+  contents: read
+
+jobs:
+  static-analysis:
+    name: ktlint + detekt
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup JDK 25
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 25
+
+      # Also validates the checksum of gradle-wrapper.jar, so a tampered wrapper
+      # in a pull request fails here before it can run anything.
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      - name: Run ktlint and detekt
+        run: ./gradlew staticAnalysis --continue
+
+      - name: Upload static analysis reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: static-analysis-reports
+          path: |
+            **/build/reports/ktlint/
+            **/build/reports/detekt/
+          retention-days: 7
+
+  build:
+    name: Lint, unit tests, debug APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup JDK 25
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 25
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+
+      # One Gradle invocation so the three share a single configuration and
+      # compilation. --continue reports lint and test failures together instead of
+      # hiding one behind the other.
+      - name: Android lint, unit tests and debug APK
+        run: ./gradlew lintDebug testDebugUnitTest assembleDebug --continue
+
+      - name: Upload lint and test reports
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lint-and-test-reports
+          path: |
+            **/build/reports/lint-results-*.html
+            **/build/reports/tests/
+          retention-days: 7
+
+      # Download from the run's summary page to install on a device.
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 14

@@ -1,0 +1,14 @@
+#!/bin/sh
+# Runs ktlint and detekt before every push and stops the push if either fails.
+# Enabled per clone with: git config core.hooksPath .githooks
+# Skip once (e.g. pushing a work-in-progress branch): git push --no-verify
+
+echo "pre-push: running ./gradlew staticAnalysis"
+
+if ! ./gradlew staticAnalysis --continue --quiet; then
+    echo ""
+    echo "pre-push: static analysis failed, push cancelled."
+    echo "  Fix formatting automatically: ./gradlew ktlintFormat"
+    echo "  Fix detekt findings by hand, then push again."
+    exit 1
+fi

@@ -1,4 +1,4 @@
-package com.matatoa.funtasks.ui.theme
+package com.matatoa.funtasks.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
