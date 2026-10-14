@@ -16,7 +16,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             FunTasksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-
                 }
             }
         }
