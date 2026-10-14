@@ -1,0 +1,61 @@
+# detekt overrides for this project.
+#
+# `buildUponDefaultConfig = true` is set in the root build.gradle.kts, so this file
+# only needs to list what we deliberately change. Everything omitted keeps detekt's
+# default. Run `./gradlew detektGenerateConfig` to see the full default config.
+
+complexity:
+  # Max lines in a function body. detekt default is 60.
+  LongMethod:
+    active: true
+    allowedLines: 100
+
+  # Max parameters. detekt defaults are 5 (function) / 6 (constructor).
+  # Counted before default values are applied, so a Composable with several
+  # defaulted parameters still spends its full budget.
+  LongParameterList:
+    active: true
+    allowedFunctionParameters: 10
+    allowedConstructorParameters: 10
+
+  # Max functions per file. detekt default is 11.
+  # The per-class/interface/object/enum limits are raised to match so the rule
+  # fails on one consistent number instead of a stricter one we never chose.
+  # Test source sets are excluded by detekt's own default `excludes` for this rule.
+  TooManyFunctions:
+    active: true
+    allowedFunctionsPerFile: 14
+    allowedFunctionsPerClass: 14
+    allowedFunctionsPerInterface: 14
+    allowedFunctionsPerObject: 14
+    allowedFunctionsPerEnum: 14
+
+naming:
+  # @Composable functions are PascalCase by convention. This mirrors
+  # `ktlint_function_naming_ignore_when_annotated_with` in .editorconfig — without it
+  # detekt flags every composable in the project.
+  FunctionNaming:
+    active: true
+    ignoreAnnotated: ['Composable']
+
+style:
+  # The rules below are already enforced by ktlint via .editorconfig. Leaving
+  # detekt's versions on would report each violation twice, with slightly
+  # different exemptions.
+
+  # ktlint: max_line_length = 100
+  MaxLineLength:
+    active: false
+
+  # ktlint: insert_final_newline = true
+  NewLineAtEndOfFile:
+    active: false
+
+  # ktlint: no-wildcard-imports
+  WildcardImport:
+    active: false
+  # @Preview functions are private and only ever called by the IDE's preview
+  # tooling, so detekt sees them as dead code.
+  UnusedPrivateFunction:
+    active: true
+    ignoreAnnotated: ['Preview']

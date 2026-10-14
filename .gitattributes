@@ -1,0 +1,11 @@
+# Normalise line endings in the repo; .editorconfig controls what editors write.
+* text=auto eol=lf
+
+# cmd.exe needs CRLF to run batch files reliably.
+*.bat text eol=crlf
+
+# Never diff or merge binaries as text.
+*.jar binary
+*.png binary
+*.webp binary
+*.jpg binary
