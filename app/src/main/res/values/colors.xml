@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Same as Graphite in Color.kt; shown before Compose draws the first frame -->
+    <color name="window_background">#FF1E2523</color>
+</resources>

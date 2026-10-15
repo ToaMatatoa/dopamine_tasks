@@ -1,0 +1,18 @@
+<resources>
+  <!-- Common -->
+  <string name="action_add">Добавить</string>
+  <string name="action_save">Сохранить</string>
+  <string name="action_cancel">Отмена</string>
+  <string name="action_delete">Удалить</string>
+  <string name="action_edit">Изменить</string>
+
+  <!-- Navigation -->
+  <string name="nav_tasks">Задачи</string>
+  <string name="nav_habits">Привычки</string>
+
+  <!-- Tasks screen -->
+  <string name="tasks_title">Дофаминовые задачи</string>
+
+  <!-- Habits screen -->
+  <string name="habits_title">Дофаминовые привычки</string>
+</resources>

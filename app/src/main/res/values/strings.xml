@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">Dopamine Tasks</string>
+    <string name="app_name" translatable="false">Dopamine Tasks</string>
+
+    <!-- Common -->
+    <string name="action_add">Add</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+
+    <!-- Navigation -->
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_habits">Habits</string>
+
+    <!-- Tasks screen -->
+    <string name="tasks_title">Dopamine Task</string>
+
+    <!-- Habits screen -->
+    <string name="habits_title">Dopamine Habit</string>
 </resources>
