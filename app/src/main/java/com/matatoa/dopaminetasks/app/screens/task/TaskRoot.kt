@@ -7,7 +7,6 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 @Composable
 fun TaskRoot(
     modifier: Modifier = Modifier,
-    viewModel: TaskViewModel = hiltViewModel(),
 ) {
     TaskScreen(
         modifier = modifier,
