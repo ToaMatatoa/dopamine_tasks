@@ -6,14 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.WindowInsetsSides
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.only
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
-import androidx.compose.ui.Modifier
-import com.matatoa.dopaminetasks.app.screens.task.TaskRoot
+import com.matatoa.dopaminetasks.app.navigation.AppNavigation
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,16 +18,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             DopamineTasksTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    contentWindowInsets = ScaffoldDefaults.contentWindowInsets
-                        .only(sides = WindowInsetsSides.Horizontal + WindowInsetsSides.Bottom),
-                ) { innerPadding ->
-                    TaskRoot(
-                        modifier = Modifier
-                            .padding(paddingValues = innerPadding),
-                    )
-                }
+                AppNavigation()
             }
         }
     }
