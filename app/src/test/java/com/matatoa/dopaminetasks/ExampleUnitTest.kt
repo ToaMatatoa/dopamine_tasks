@@ -1,4 +1,4 @@
-package com.matatoa.funtasks
+package com.matatoa.dopaminetasks
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

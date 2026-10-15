@@ -1,4 +1,4 @@
-package com.matatoa.funtasks.ui
+package com.matatoa.dopaminetasks.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

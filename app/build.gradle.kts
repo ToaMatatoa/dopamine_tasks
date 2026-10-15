@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    namespace = "com.matatoa.funtasks"
+    namespace = "com.matatoa.dopaminetasks"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.matatoa.funtasks"
+        applicationId = "com.matatoa.dopaminetasks"
         minSdk = 30
         targetSdk = 37
         versionCode = 1

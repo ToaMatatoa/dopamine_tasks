@@ -1,4 +1,4 @@
-package com.matatoa.funtasks.theme
+package com.matatoa.dopaminetasks.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
