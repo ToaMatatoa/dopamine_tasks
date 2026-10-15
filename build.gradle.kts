@@ -11,6 +11,7 @@ plugins {
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.hilt.android) apply false
+    alias(libs.plugins.room) apply false
 }
 
 // The `libs` catalog accessor only exists in this script's own scope, not inside

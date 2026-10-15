@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -39,6 +40,10 @@ android {
     }
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
+
 dependencies {
     // AndroidX
     implementation(libs.androidx.core.ktx)
@@ -58,6 +63,10 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
+
+    // room
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
 
     // navigation 3
     implementation(libs.androidx.navigation3.runtime)
