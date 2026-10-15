@@ -1,4 +1,4 @@
-package com.matatoa.funtasks.theme
+package com.matatoa.dopaminetasks.theme
 
 import androidx.compose.ui.graphics.Color
 

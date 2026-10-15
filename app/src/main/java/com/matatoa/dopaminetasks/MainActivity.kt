@@ -1,4 +1,4 @@
-package com.matatoa.funtasks
+package com.matatoa.dopaminetasks
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,15 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.matatoa.funtasks.theme.FunTasksTheme
-import com.matatoa.funtasks.ui.TaskRoot
+import com.matatoa.dopaminetasks.theme.DopamineTasksTheme
+import com.matatoa.dopaminetasks.ui.TaskRoot
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            FunTasksTheme {
+            DopamineTasksTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     TaskRoot(
                         modifier = Modifier

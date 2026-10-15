@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FunTasks"
+rootProject.name = "DopamineTasks"
 include(":app")
