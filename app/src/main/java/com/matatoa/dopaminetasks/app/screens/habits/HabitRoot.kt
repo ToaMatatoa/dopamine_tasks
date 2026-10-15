@@ -9,7 +9,6 @@ fun HabitRoot(
     modifier: Modifier = Modifier,
     viewModel: HabitViewModel = hiltViewModel(),
 ) {
-
     HabitScreen(
         modifier = modifier,
     )
