@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks
+package com.matatoa.dopaminetasks.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.matatoa.dopaminetasks.theme.DopamineTasksTheme
-import com.matatoa.dopaminetasks.ui.TaskRoot
+import com.matatoa.dopaminetasks.app.ui.TaskRoot
+import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

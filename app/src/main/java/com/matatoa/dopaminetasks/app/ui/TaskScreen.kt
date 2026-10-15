@@ -1,11 +1,11 @@
-package com.matatoa.dopaminetasks.ui
+package com.matatoa.dopaminetasks.app.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.matatoa.dopaminetasks.theme.DopamineTasksTheme
+import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 @Composable
 fun TaskScreen(modifier: Modifier = Modifier) {
