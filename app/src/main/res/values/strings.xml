@@ -14,6 +14,11 @@
 
     <!-- Tasks screen -->
     <string name="tasks_title">Dopamine Task</string>
+    <string name="task_delete_question">Delete this task?</string>
+    <string name="tasks_important_title">Important %1$d/%2$d</string>
+    <string name="tasks_common_title">Common %1$d/%2$d</string>
+    <string name="tasks_important_empty">Add your first important task</string>
+    <string name="tasks_common_empty">Add your first common task</string>
 
     <!-- Habits screen -->
     <string name="habits_title">Dopamine Habit</string>

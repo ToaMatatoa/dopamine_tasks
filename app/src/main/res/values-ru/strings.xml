@@ -12,6 +12,11 @@
 
   <!-- Tasks screen -->
   <string name="tasks_title">Дофаминовые задачи</string>
+  <string name="task_delete_question">Удалить эту задачу?</string>
+  <string name="tasks_important_title">Важные %1$d/%2$d</string>
+  <string name="tasks_common_title">Обычные %1$d/%2$d</string>
+  <string name="tasks_important_empty">Добавьте первую важную задачу</string>
+  <string name="tasks_common_empty">Добавьте первую обычную задачу</string>
 
   <!-- Habits screen -->
   <string name="habits_title">Дофаминовые привычки</string>
