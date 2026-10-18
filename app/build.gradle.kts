@@ -40,6 +40,12 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.add("-Xexplicit-backing-fields")
+    }
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
 }
