@@ -1,11 +1,13 @@
-package com.matatoa.dopaminetasks.ui
+package com.matatoa.dopaminetasks.app.screens.habits
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun TaskRoot(modifier: Modifier = Modifier) {
-    TaskScreen(
+fun HabitRoot(
+    modifier: Modifier = Modifier,
+) {
+    HabitScreen(
         modifier = modifier,
     )
 }
