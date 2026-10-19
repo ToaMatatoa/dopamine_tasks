@@ -17,6 +17,9 @@
   <string name="tasks_common_title">Обычные %1$d/%2$d</string>
   <string name="tasks_important_empty">Добавить важную задачу</string>
   <string name="tasks_common_empty">Добавить обычную задачу</string>
+  <string name="you_added_task">Вы добавили \"%1$s\" задачу</string>
+  <string name="you_deleted_task">Вы удалили \"%1$s\" задачу</string>
+
 
   <!-- Habits screen -->
   <string name="habits_title">Дофаминовые привычки</string>
