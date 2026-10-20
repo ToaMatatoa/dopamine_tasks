@@ -8,8 +8,8 @@ import com.matatoa.dopaminetasks.domain.model.TaskModel
 import com.matatoa.dopaminetasks.domain.usecase.AddTaskUseCase
 import com.matatoa.dopaminetasks.domain.usecase.DeleteTaskUseCase
 import com.matatoa.dopaminetasks.domain.usecase.FetchTasksUseCase
+import com.matatoa.dopaminetasks.domain.usecase.UpdateTaskDoneUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +17,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class TaskViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val updateTaskDoneUseCase: UpdateTaskDoneUseCase,
     fetchTasksUseCase: FetchTasksUseCase,
 ) : ViewModel() {
 
@@ -66,6 +68,35 @@ class TaskViewModel @Inject constructor(
             _events.send(element = event)
         }
     }
+
+    fun toggleTaskDone(task: TaskModel) {
+        val isDone = !task.isDone
+        val completion = if (isDone) taskCompletion(task = task) else null
+        viewModelScope.launch {
+            val event = when (updateTaskDoneUseCase.execute(id = task.id, isDone = isDone)) {
+                is DataResult.Success -> completion?.let { completion ->
+                    TaskEvent.TaskCompleted(completion = completion)
+                }
+
+                is DataResult.Error -> TaskEvent.Error
+            }
+            event?.let { _events.send(element = it) }
+        }
+    }
+
+    private fun taskCompletion(task: TaskModel): TaskCompletion {
+        val undoneTasks = state.value.tasks.filter { !it.isDone && it.id != task.id }
+        val hasImportantLeft = undoneTasks.any { it.isImportant }
+        val hasCommonLeft = undoneTasks.any { !it.isImportant }
+        return when {
+            !hasImportantLeft && !hasCommonLeft -> TaskCompletion.ALL_TASKS
+            task.isImportant && hasImportantLeft -> TaskCompletion.IMPORTANT_TASK
+            task.isImportant -> TaskCompletion.ALL_IMPORTANT_TASKS
+            !hasCommonLeft -> TaskCompletion.ALL_COMMON_TASKS
+            hasImportantLeft -> TaskCompletion.COMMON_TASK
+            else -> TaskCompletion.COMMON_TASK_NO_IMPORTANT_LEFT
+        }
+    }
 }
 
 @Immutable
@@ -84,5 +115,20 @@ sealed interface TaskEvent {
         val title: String,
     ) : TaskEvent
 
+    data class TaskCompleted(
+        val completion: TaskCompletion,
+    ) : TaskEvent
+
     data object Error : TaskEvent
+}
+
+enum class TaskCompletion(
+    val isMilestone: Boolean,
+) {
+    IMPORTANT_TASK(isMilestone = false),
+    COMMON_TASK(isMilestone = false),
+    COMMON_TASK_NO_IMPORTANT_LEFT(isMilestone = false),
+    ALL_IMPORTANT_TASKS(isMilestone = true),
+    ALL_COMMON_TASKS(isMilestone = true),
+    ALL_TASKS(isMilestone = true),
 }

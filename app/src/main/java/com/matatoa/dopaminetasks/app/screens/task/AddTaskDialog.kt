@@ -1,5 +1,6 @@
 package com.matatoa.dopaminetasks.app.screens.task
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AlertDialog
@@ -20,6 +21,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.matatoa.dopaminetasks.R
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
@@ -54,6 +56,9 @@ fun AddTaskDialog(
                 ),
                 style = MaterialTheme.typography.titleMedium,
                 color = accentColor,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth(),
             )
         },
         text = {

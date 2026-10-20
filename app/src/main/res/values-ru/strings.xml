@@ -5,6 +5,7 @@
   <string name="action_cancel">Отмена</string>
   <string name="action_delete">Удалить</string>
   <string name="action_edit">Изменить</string>
+  <string name="action_ok">Ок</string>
 
   <!-- Navigation -->
   <string name="nav_tasks">Задачи</string>
@@ -20,6 +21,12 @@
   <string name="tasks_common_empty">Добавить обычную задачу</string>
   <string name="you_added_task">Вы добавили \"%1$s\" задачу</string>
   <string name="you_deleted_task">Вы удалили \"%1$s\" задачу</string>
+  <string name="important_task_completed">Вы выполнили важную задачу. Это настоящий дофамин!</string>
+  <string name="all_important_tasks_completed">Вы выполнили все важные задачи. Вы великолепны и получили настоящий дофамин!</string>
+  <string name="common_task_completed">Вы выполнили обычную задачу. Хорошо, но не забывайте о важных!</string>
+  <string name="common_task_completed_keep_going">Вы выполнили обычную задачу. Так держать!</string>
+  <string name="all_common_tasks_completed">Вы выполнили все обычные задачи, но важные всё ещё ждут вас.</string>
+  <string name="all_tasks_completed">Вы выполнили все задачи на сегодня! Это настоящий дофамин!</string>
   <string name="fetch_tasks_error">Возникла ошибка во время загрузки задач. Пожалуйста, перезайдите в приложение</string>
 
   <!-- Habits screen -->
