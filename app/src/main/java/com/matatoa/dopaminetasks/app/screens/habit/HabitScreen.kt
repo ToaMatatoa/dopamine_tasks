@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.app.screens.habits
+package com.matatoa.dopaminetasks.app.screens.habit
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
