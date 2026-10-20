@@ -1,7 +1,7 @@
 package com.matatoa.dopaminetasks.core.di
 
-import com.matatoa.dopaminetasks.core.database.repository.TaskRepository
-import com.matatoa.dopaminetasks.core.database.repository.TaskRepositoryImpl
+import com.matatoa.dopaminetasks.core.repository.TaskRepository
+import com.matatoa.dopaminetasks.core.repository.TaskRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

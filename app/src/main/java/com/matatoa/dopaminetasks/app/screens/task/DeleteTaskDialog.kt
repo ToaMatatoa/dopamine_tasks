@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.matatoa.dopaminetasks.R
@@ -13,6 +14,7 @@ import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 @Composable
 fun DeleteTaskDialog(
+    isImportant: Boolean,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
@@ -21,8 +23,15 @@ fun DeleteTaskDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = stringResource(id = R.string.task_delete_question),
+                text = stringResource(
+                    id = if (isImportant) {
+                        R.string.task_delete_important_question
+                    } else {
+                        R.string.task_delete_common_question
+                    },
+                ),
                 style = MaterialTheme.typography.titleMedium,
+                color = if (isImportant) MaterialTheme.colorScheme.tertiary else Color.Unspecified,
             )
         },
         confirmButton = {
@@ -41,9 +50,22 @@ fun DeleteTaskDialog(
 
 @Preview
 @Composable
-private fun DeleteTaskDialogPreview() {
+private fun DeleteTaskDialogImportantPreview() {
     DopamineTasksTheme {
         DeleteTaskDialog(
+            isImportant = true,
+            onConfirm = {},
+            onDismiss = {},
+        )
+    }
+}
+
+@Preview
+@Composable
+private fun DeleteTaskDialogCommonPreview() {
+    DopamineTasksTheme {
+        DeleteTaskDialog(
+            isImportant = false,
             onConfirm = {},
             onDismiss = {},
         )

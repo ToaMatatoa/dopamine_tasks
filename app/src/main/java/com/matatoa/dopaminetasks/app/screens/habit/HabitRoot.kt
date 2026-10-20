@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.app.screens.habits
+package com.matatoa.dopaminetasks.app.screens.habit
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

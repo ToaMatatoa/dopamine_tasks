@@ -12,14 +12,15 @@
 
   <!-- Tasks screen -->
   <string name="tasks_title">Дофаминовые задачи</string>
-  <string name="task_delete_question">Удалить эту задачу?</string>
-  <string name="tasks_important_title">Важные %1$d/%2$d</string>
-  <string name="tasks_common_title">Обычные %1$d/%2$d</string>
+  <string name="task_delete_important_question">Удалить эту важную задачу?</string>
+  <string name="task_delete_common_question">Удалить эту обычную задачу?</string>
+  <string name="tasks_important_title">Важные задачи %1$d/%2$d</string>
+  <string name="tasks_common_title">Обычные задачи %1$d/%2$d</string>
   <string name="tasks_important_empty">Добавить важную задачу</string>
   <string name="tasks_common_empty">Добавить обычную задачу</string>
   <string name="you_added_task">Вы добавили \"%1$s\" задачу</string>
   <string name="you_deleted_task">Вы удалили \"%1$s\" задачу</string>
-
+  <string name="fetch_tasks_error">Возникла ошибка во время загрузки задач. Пожалуйста, перезайдите в приложение</string>
 
   <!-- Habits screen -->
   <string name="habits_title">Дофаминовые привычки</string>

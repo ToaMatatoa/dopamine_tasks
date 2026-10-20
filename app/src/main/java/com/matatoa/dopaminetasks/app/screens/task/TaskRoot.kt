@@ -44,8 +44,8 @@ fun TaskRoot(
     TaskScreen(
         state = state,
         onTaskClick = {},
-        onTaskDelete = {},
-        onAddTaskClick = {},
+        onTaskDelete = viewModel::deleteTask,
+        onAddTask = viewModel::addTask,
         modifier = modifier,
     )
 }

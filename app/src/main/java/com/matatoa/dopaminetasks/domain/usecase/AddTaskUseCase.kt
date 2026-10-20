@@ -1,7 +1,7 @@
 package com.matatoa.dopaminetasks.domain.usecase
 
-import com.matatoa.dopaminetasks.core.database.dataresult.DataResult
-import com.matatoa.dopaminetasks.core.database.repository.TaskRepository
+import com.matatoa.dopaminetasks.core.dataresult.DataResult
+import com.matatoa.dopaminetasks.core.repository.TaskRepository
 import com.matatoa.dopaminetasks.domain.mapper.toTaskEntity
 import com.matatoa.dopaminetasks.domain.model.TaskModel
 import javax.inject.Inject

@@ -14,13 +14,15 @@
 
   <!-- Tasks screen -->
   <string name="tasks_title">Dopamine Task</string>
-  <string name="task_delete_question">Delete this task?</string>
-  <string name="tasks_important_title">Important %1$d/%2$d</string>
-  <string name="tasks_common_title">Common %1$d/%2$d</string>
+  <string name="task_delete_important_question">Delete this important task?</string>
+  <string name="task_delete_common_question">Delete this common task?</string>
+  <string name="tasks_important_title">Important tasks %1$d/%2$d</string>
+  <string name="tasks_common_title">Common tasks %1$d/%2$d</string>
   <string name="tasks_important_empty">Add an important task</string>
   <string name="tasks_common_empty">Add a common task</string>
   <string name="you_added_task">You added \"%1$s\" task</string>
   <string name="you_deleted_task">You deleted \"%1$s\" task</string>
+  <string name="fetch_tasks_error">There is an error while loading tasks. Please re-open application</string>
 
   <!-- Habits screen -->
   <string name="habits_title">Dopamine Habit</string>
