@@ -20,6 +20,9 @@ max_line_length = 100
 ij_kotlin_allow_trailing_comma = true
 ij_kotlin_allow_trailing_comma_on_call_site = true
 
+# Same import order ktlint expects, so the IDE's "Optimize imports" doesn't move javax to the end.
+ij_kotlin_imports_layout = *,java.**,javax.**,kotlin.**,^
+
 # @Composable functions are PascalCase by convention, which the naming rule
 # would otherwise flag. Test method names are free-form for readability.
 ktlint_function_naming_ignore_when_annotated_with = Composable, Test, ParameterizedTest

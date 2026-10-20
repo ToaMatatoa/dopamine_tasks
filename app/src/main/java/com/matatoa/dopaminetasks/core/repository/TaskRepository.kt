@@ -5,8 +5,8 @@ import com.matatoa.dopaminetasks.core.database.dao.TaskDao
 import com.matatoa.dopaminetasks.core.database.entity.TaskEntity
 import com.matatoa.dopaminetasks.core.dataresult.DataResult
 import com.matatoa.dopaminetasks.core.dataresult.asResult
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 interface TaskRepository {
     suspend fun addTask(task: TaskEntity): DataResult<Unit>

@@ -4,9 +4,9 @@ import com.matatoa.dopaminetasks.core.dataresult.DataResult
 import com.matatoa.dopaminetasks.core.repository.TaskRepository
 import com.matatoa.dopaminetasks.domain.mapper.toTaskModel
 import com.matatoa.dopaminetasks.domain.model.TaskModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 interface FetchTasksUseCase {
     fun execute(): Flow<DataResult<List<TaskModel>>>
