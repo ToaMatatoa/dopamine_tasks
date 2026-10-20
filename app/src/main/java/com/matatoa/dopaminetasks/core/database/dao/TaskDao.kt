@@ -14,6 +14,9 @@ interface TaskDao {
     @Query("DELETE FROM tasks WHERE id = :id")
     suspend fun deleteTask(id: Long)
 
+    @Query("UPDATE tasks SET is_done = :isDone WHERE id = :id")
+    suspend fun updateTaskDone(id: Long, isDone: Boolean)
+
     @Query("SELECT * FROM tasks ORDER BY date")
     fun fetchTasks(): Flow<List<TaskEntity>>
 }
