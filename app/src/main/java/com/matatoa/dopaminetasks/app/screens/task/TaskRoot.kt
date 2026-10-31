@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matatoa.dopaminetasks.R.string
 
@@ -26,6 +27,11 @@ fun TaskRoot(
     val context = LocalContext.current
     val resources by rememberUpdatedState(newValue = LocalResources.current)
     var milestone by rememberSaveable { mutableStateOf<TaskCompletion?>(value = null) }
+
+    LifecycleResumeEffect(Unit) {
+        viewModel.refreshToday()
+        onPauseOrDispose {}
+    }
 
     LaunchedEffect(Unit) {
         viewModel.events.collect { event ->
@@ -66,6 +72,7 @@ fun TaskRoot(
 
     TaskScreen(
         state = state,
+        onDateClick = viewModel::selectDate,
         onTaskClick = viewModel::toggleTaskDone,
         onTaskDelete = viewModel::deleteTask,
         onAddTask = viewModel::addTask,
