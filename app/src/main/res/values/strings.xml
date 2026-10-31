@@ -33,4 +33,5 @@
 
   <!-- Habits screen -->
   <string name="habits_title">Dopamine Habit</string>
+  <string name="habit_tab_empty">Empty</string>
 </resources>

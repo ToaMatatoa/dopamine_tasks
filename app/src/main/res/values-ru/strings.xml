@@ -31,4 +31,5 @@
 
   <!-- Habits screen -->
   <string name="habits_title">Дофаминовые привычки</string>
+  <string name="habit_tab_empty">Пусто</string>
 </resources>
