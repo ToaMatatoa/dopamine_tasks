@@ -38,6 +38,7 @@
   <string name="habit_tab_title_label">Название вкладки</string>
   <string name="habit_text_label">Привычка</string>
   <string name="habit_days_helper">Количество дней нельзя будет изменить, поэтому, пожалуйста, выбирайте внимательно.</string>
+  <string name="habit_finished_mark">(завершена)</string>
   <plurals name="habit_days_count">
     <item quantity="one">%d день</item>
     <item quantity="few">%d дня</item>
