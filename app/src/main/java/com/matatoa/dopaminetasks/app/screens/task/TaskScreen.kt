@@ -21,11 +21,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matatoa.dopaminetasks.R
+import com.matatoa.dopaminetasks.designsystem.DeleteDialog
 import com.matatoa.dopaminetasks.designsystem.PrimaryButton
 import com.matatoa.dopaminetasks.designsystem.TopBar
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
@@ -249,6 +251,30 @@ private fun ScreenLoadedState(
             )
         }
     }
+}
+
+@Composable
+private fun DeleteTaskDialog(
+    isImportant: Boolean,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    DeleteDialog(
+        title = stringResource(
+            id = if (isImportant) {
+                R.string.task_delete_important_question
+            } else {
+                R.string.task_delete_common_question
+            },
+        ),
+        titleColor = if (isImportant) {
+            MaterialTheme.colorScheme.tertiary
+        } else {
+            Color.Unspecified
+        },
+        onConfirm = onConfirm,
+        onDismiss = onDismiss,
+    )
 }
 
 @Preview(showBackground = true)

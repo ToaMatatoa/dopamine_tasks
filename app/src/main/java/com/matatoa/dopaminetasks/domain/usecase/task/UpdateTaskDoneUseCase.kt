@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.domain.usecase
+package com.matatoa.dopaminetasks.domain.usecase.task
 
 import com.matatoa.dopaminetasks.core.dataresult.DataResult
 import com.matatoa.dopaminetasks.core.repository.TaskRepository
