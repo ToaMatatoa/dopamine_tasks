@@ -3,6 +3,7 @@ package com.matatoa.dopaminetasks.core.di
 import android.content.Context
 import androidx.room.Room
 import com.matatoa.dopaminetasks.core.database.DopamineTaskDatabase
+import com.matatoa.dopaminetasks.core.database.dao.HabitDao
 import com.matatoa.dopaminetasks.core.database.dao.TaskDao
 import dagger.Module
 import dagger.Provides
@@ -27,4 +28,7 @@ object DatabaseModule {
 
     @Provides
     fun provideTaskDao(db: DopamineTaskDatabase): TaskDao = db.taskDao()
+
+    @Provides
+    fun provideHabitDao(db: DopamineTaskDatabase): HabitDao = db.habitDao()
 }
