@@ -28,7 +28,7 @@
   <string name="common_task_completed">You\'ve completed a common task. Good, but remember the important ones!</string>
   <string name="common_task_completed_keep_going">You\'ve completed a common task. Keep going!</string>
   <string name="all_common_tasks_completed">You\'ve completed all common tasks, but the important ones are waiting for you.</string>
-  <string name="all_tasks_completed">You\'ve completed all tasks for today! That\'s real dopamine!</string>
+  <string name="all_tasks_completed">You\'ve completed all tasks for this day! That\'s real dopamine!</string>
   <string name="fetch_tasks_error">There is an error while loading tasks. Please re-open application</string>
 
   <!-- Habits screen -->

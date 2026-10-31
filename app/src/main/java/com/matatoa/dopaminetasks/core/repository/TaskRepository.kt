@@ -11,8 +11,9 @@ import javax.inject.Inject
 interface TaskRepository {
     suspend fun addTask(task: TaskEntity): DataResult<Unit>
     suspend fun deleteTask(id: Long): DataResult<Unit>
+    suspend fun deleteTasksBefore(beforeMillis: Long): DataResult<Unit>
     suspend fun updateTaskDone(id: Long, isDone: Boolean): DataResult<Unit>
-    fun fetchTasks(): Flow<DataResult<List<TaskEntity>>>
+    fun fetchTasks(startMillis: Long, endMillis: Long): Flow<DataResult<List<TaskEntity>>>
 }
 
 class TaskRepositoryImpl @Inject constructor(
@@ -32,6 +33,13 @@ class TaskRepositoryImpl @Inject constructor(
         DataResult.Error(error = e)
     }
 
+    override suspend fun deleteTasksBefore(beforeMillis: Long): DataResult<Unit> = try {
+        taskDao.deleteTasksBefore(beforeMillis = beforeMillis)
+        DataResult.Success(data = Unit)
+    } catch (e: SQLiteException) {
+        DataResult.Error(error = e)
+    }
+
     override suspend fun updateTaskDone(id: Long, isDone: Boolean): DataResult<Unit> = try {
         taskDao.updateTaskDone(id = id, isDone = isDone)
         DataResult.Success(data = Unit)
@@ -39,6 +47,9 @@ class TaskRepositoryImpl @Inject constructor(
         DataResult.Error(error = e)
     }
 
-    override fun fetchTasks(): Flow<DataResult<List<TaskEntity>>> =
-        taskDao.fetchTasks().asResult()
+    override fun fetchTasks(
+        startMillis: Long,
+        endMillis: Long,
+    ): Flow<DataResult<List<TaskEntity>>> =
+        taskDao.fetchTasks(startMillis = startMillis, endMillis = endMillis).asResult()
 }

@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.app.screens.task
+package com.matatoa.dopaminetasks.designsystem
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
@@ -23,7 +23,7 @@ import compose.icons.TablerIcons
 import compose.icons.tablericons.Plus
 
 @Composable
-fun AddFirstTaskButton(
+fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -60,9 +60,9 @@ fun AddFirstTaskButton(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1E2523)
 @Composable
-private fun AddFirstTaskButtonPreview() {
+private fun PrimaryButtonPreview() {
     DopamineTasksTheme {
-        AddFirstTaskButton(
+        PrimaryButton(
             text = "Add an important task",
             onClick = {},
             contentColor = MaterialTheme.colorScheme.tertiary,
