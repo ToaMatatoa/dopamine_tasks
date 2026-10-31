@@ -26,13 +26,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.matatoa.dopaminetasks.R
+import com.matatoa.dopaminetasks.designsystem.PrimaryButton
 import com.matatoa.dopaminetasks.designsystem.TopBar
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 import com.matatoa.dopaminetasks.domain.model.TaskModel
+import java.time.LocalDate
 
 @Composable
 fun TaskScreen(
     state: TaskScreenState,
+    onDateClick: (LocalDate) -> Unit,
     onTaskClick: (TaskModel) -> Unit,
     onTaskDelete: (TaskModel) -> Unit,
     onAddTask: (title: String, isImportant: Boolean) -> Unit,
@@ -58,6 +61,13 @@ fun TaskScreen(
     ) {
         TopBar(
             title = stringResource(id = R.string.tasks_title),
+        )
+
+        TaskDateRow(
+            dates = state.dates,
+            today = state.today,
+            selectedDate = state.selectedDate,
+            onDateClick = onDateClick,
         )
 
         when {
@@ -123,13 +133,13 @@ private fun ScreenEmptyState(
             .fillMaxWidth()
             .padding(all = 16.dp),
     ) {
-        AddFirstTaskButton(
+        PrimaryButton(
             text = stringResource(id = R.string.tasks_important_empty),
             onClick = { onAddTaskClick(true) },
             contentColor = MaterialTheme.colorScheme.tertiary,
         )
 
-        AddFirstTaskButton(
+        PrimaryButton(
             text = stringResource(id = R.string.tasks_common_empty),
             onClick = { onAddTaskClick(false) },
             modifier = Modifier
@@ -171,7 +181,7 @@ private fun ScreenLoadedState(
     ) {
         item(key = "important_header") {
             if (importantTasks.isEmpty()) {
-                AddFirstTaskButton(
+                PrimaryButton(
                     text = stringResource(id = R.string.tasks_important_empty),
                     onClick = { onAddTaskClick(true) },
                     contentColor = MaterialTheme.colorScheme.tertiary,
@@ -205,7 +215,7 @@ private fun ScreenLoadedState(
 
         item(key = "common_header") {
             if (commonTasks.isEmpty()) {
-                AddFirstTaskButton(
+                PrimaryButton(
                     text = stringResource(id = R.string.tasks_common_empty),
                     onClick = { onAddTaskClick(false) },
                     modifier = Modifier
@@ -285,6 +295,7 @@ private fun TaskScreenPreview() {
                     ),
                 ),
             ),
+            onDateClick = {},
             onTaskClick = {},
             onTaskDelete = {},
             onAddTask = { _, _ -> },
@@ -298,6 +309,7 @@ private fun TaskScreenEmptyPreview() {
     DopamineTasksTheme {
         TaskScreen(
             state = TaskScreenState(),
+            onDateClick = {},
             onTaskClick = {},
             onTaskDelete = {},
             onAddTask = { _, _ -> },
@@ -328,6 +340,7 @@ private fun TaskScreenOnlyImportantPreview() {
                     ),
                 ),
             ),
+            onDateClick = {},
             onTaskClick = {},
             onTaskDelete = {},
             onAddTask = { _, _ -> },
@@ -365,6 +378,7 @@ private fun TaskScreenOnlyCommonPreview() {
                     ),
                 ),
             ),
+            onDateClick = {},
             onTaskClick = {},
             onTaskDelete = {},
             onAddTask = { _, _ -> },

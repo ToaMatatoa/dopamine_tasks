@@ -26,7 +26,7 @@
   <string name="common_task_completed">Вы выполнили обычную задачу. Хорошо, но не забывайте о важных!</string>
   <string name="common_task_completed_keep_going">Вы выполнили обычную задачу. Так держать!</string>
   <string name="all_common_tasks_completed">Вы выполнили все обычные задачи, но важные всё ещё ждут вас.</string>
-  <string name="all_tasks_completed">Вы выполнили все задачи на сегодня! Это настоящий дофамин!</string>
+  <string name="all_tasks_completed">Вы выполнили все задачи на этот день! Это настоящий дофамин!</string>
   <string name="fetch_tasks_error">Возникла ошибка во время загрузки задач. Пожалуйста, перезайдите в приложение</string>
 
   <!-- Habits screen -->
