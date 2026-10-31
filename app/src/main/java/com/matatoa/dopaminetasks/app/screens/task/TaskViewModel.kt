@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.matatoa.dopaminetasks.core.dataresult.DataResult
 import com.matatoa.dopaminetasks.domain.mapper.toStartOfDayMillis
 import com.matatoa.dopaminetasks.domain.model.TaskModel
-import com.matatoa.dopaminetasks.domain.usecase.AddTaskUseCase
-import com.matatoa.dopaminetasks.domain.usecase.DeleteTaskUseCase
-import com.matatoa.dopaminetasks.domain.usecase.DeleteTasksBeforeUseCase
-import com.matatoa.dopaminetasks.domain.usecase.FetchTasksUseCase
-import com.matatoa.dopaminetasks.domain.usecase.UpdateTaskDoneUseCase
+import com.matatoa.dopaminetasks.domain.usecase.task.AddTaskUseCase
+import com.matatoa.dopaminetasks.domain.usecase.task.DeleteTaskUseCase
+import com.matatoa.dopaminetasks.domain.usecase.task.DeleteTasksBeforeUseCase
+import com.matatoa.dopaminetasks.domain.usecase.task.FetchTasksUseCase
+import com.matatoa.dopaminetasks.domain.usecase.task.UpdateTaskDoneUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
