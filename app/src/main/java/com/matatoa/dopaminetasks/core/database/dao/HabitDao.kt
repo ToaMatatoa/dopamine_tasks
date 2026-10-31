@@ -13,11 +13,11 @@ interface HabitDao {
     @Insert
     suspend fun addHabit(habit: HabitEntity)
 
-    @Query(
-        "UPDATE habits SET tab_title = :tabTitle, title = :title, " +
-            "days_to_complete = :daysToComplete WHERE id = :id",
-    )
-    suspend fun updateHabit(id: Long, tabTitle: String, title: String, daysToComplete: Int)
+    @Query("UPDATE habits SET tab_title = :tabTitle, title = :title WHERE id = :id")
+    suspend fun updateHabit(id: Long, tabTitle: String, title: String)
+
+    @Query("UPDATE habits SET completion_shown = 1 WHERE id = :id")
+    suspend fun markHabitCompletionShown(id: Long)
 
     @Query("DELETE FROM habits WHERE id = :id")
     suspend fun deleteHabit(id: Long)

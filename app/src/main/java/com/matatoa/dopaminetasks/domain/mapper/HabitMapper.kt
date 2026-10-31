@@ -13,6 +13,7 @@ fun HabitModel.toHabitEntity(): HabitEntity =
         title = title,
         startEpochDay = startDate.toEpochDay(),
         daysToComplete = daysToComplete,
+        isCompletionShown = isCompletionShown,
     )
 
 fun HabitEntity.toHabitModel(): HabitModel =
@@ -23,6 +24,7 @@ fun HabitEntity.toHabitModel(): HabitModel =
         title = title,
         startDate = LocalDate.ofEpochDay(startEpochDay),
         daysToComplete = daysToComplete,
+        isCompletionShown = isCompletionShown,
     )
 
 fun HabitCheckEntity.toCheckedDate(): LocalDate =

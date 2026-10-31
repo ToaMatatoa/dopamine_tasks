@@ -21,4 +21,6 @@ data class HabitEntity(
     val startEpochDay: Long,
     @ColumnInfo(name = "days_to_complete")
     val daysToComplete: Int,
+    @ColumnInfo(name = "completion_shown", defaultValue = "0")
+    val isCompletionShown: Boolean = false,
 )

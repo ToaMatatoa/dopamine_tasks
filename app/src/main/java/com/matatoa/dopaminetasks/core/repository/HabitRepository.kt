@@ -11,12 +11,8 @@ import javax.inject.Inject
 
 interface HabitRepository {
     suspend fun addHabit(habit: HabitEntity): DataResult<Unit>
-    suspend fun updateHabit(
-        id: Long,
-        tabTitle: String,
-        title: String,
-        daysToComplete: Int,
-    ): DataResult<Unit>
+    suspend fun updateHabit(id: Long, tabTitle: String, title: String): DataResult<Unit>
+    suspend fun markHabitCompletionShown(id: Long): DataResult<Unit>
     suspend fun deleteHabit(id: Long): DataResult<Unit>
     fun fetchHabits(): Flow<DataResult<List<HabitEntity>>>
     suspend fun addHabitCheck(check: HabitCheckEntity): DataResult<Unit>
@@ -38,14 +34,15 @@ class HabitRepositoryImpl @Inject constructor(
         id: Long,
         tabTitle: String,
         title: String,
-        daysToComplete: Int,
     ): DataResult<Unit> = try {
-        habitDao.updateHabit(
-            id = id,
-            tabTitle = tabTitle,
-            title = title,
-            daysToComplete = daysToComplete,
-        )
+        habitDao.updateHabit(id = id, tabTitle = tabTitle, title = title)
+        DataResult.Success(data = Unit)
+    } catch (e: SQLiteException) {
+        DataResult.Error(error = e)
+    }
+
+    override suspend fun markHabitCompletionShown(id: Long): DataResult<Unit> = try {
+        habitDao.markHabitCompletionShown(id = id)
         DataResult.Success(data = Unit)
     } catch (e: SQLiteException) {
         DataResult.Error(error = e)

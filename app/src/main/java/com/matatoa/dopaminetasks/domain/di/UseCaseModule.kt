@@ -10,6 +10,8 @@ import com.matatoa.dopaminetasks.domain.usecase.habit.FetchHabitCheckedDatesUseC
 import com.matatoa.dopaminetasks.domain.usecase.habit.FetchHabitCheckedDatesUseCaseImpl
 import com.matatoa.dopaminetasks.domain.usecase.habit.FetchHabitsUseCase
 import com.matatoa.dopaminetasks.domain.usecase.habit.FetchHabitsUseCaseImpl
+import com.matatoa.dopaminetasks.domain.usecase.habit.MarkHabitCompletionShownUseCase
+import com.matatoa.dopaminetasks.domain.usecase.habit.MarkHabitCompletionShownUseCaseImpl
 import com.matatoa.dopaminetasks.domain.usecase.habit.UncheckHabitTodayUseCase
 import com.matatoa.dopaminetasks.domain.usecase.habit.UncheckHabitTodayUseCaseImpl
 import com.matatoa.dopaminetasks.domain.usecase.habit.UpdateHabitUseCase
@@ -76,6 +78,11 @@ interface UseCaseModule {
     fun bindFetchHabitsUseCase(
         fetchHabitsUseCaseImpl: FetchHabitsUseCaseImpl,
     ): FetchHabitsUseCase
+
+    @Binds
+    fun bindMarkHabitCompletionShownUseCase(
+        markHabitCompletionShownUseCaseImpl: MarkHabitCompletionShownUseCaseImpl,
+    ): MarkHabitCompletionShownUseCase
 
     @Binds
     fun bindUncheckHabitTodayUseCase(

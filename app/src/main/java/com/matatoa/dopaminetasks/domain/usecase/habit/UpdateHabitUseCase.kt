@@ -17,6 +17,5 @@ class UpdateHabitUseCaseImpl @Inject constructor(
             id = habit.id,
             tabTitle = habit.tabTitle,
             title = habit.title,
-            daysToComplete = habit.daysToComplete,
         )
 }
