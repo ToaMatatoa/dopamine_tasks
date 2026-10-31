@@ -4,51 +4,101 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.matatoa.dopaminetasks.core.dataresult.DataResult
+import com.matatoa.dopaminetasks.domain.mapper.toStartOfDayMillis
 import com.matatoa.dopaminetasks.domain.model.TaskModel
 import com.matatoa.dopaminetasks.domain.usecase.AddTaskUseCase
 import com.matatoa.dopaminetasks.domain.usecase.DeleteTaskUseCase
+import com.matatoa.dopaminetasks.domain.usecase.DeleteTasksBeforeUseCase
 import com.matatoa.dopaminetasks.domain.usecase.FetchTasksUseCase
 import com.matatoa.dopaminetasks.domain.usecase.UpdateTaskDoneUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class TaskViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val deleteTasksBeforeUseCase: DeleteTasksBeforeUseCase,
     private val updateTaskDoneUseCase: UpdateTaskDoneUseCase,
     fetchTasksUseCase: FetchTasksUseCase,
 ) : ViewModel() {
 
-    val state: StateFlow<TaskScreenState> = fetchTasksUseCase.execute()
-        .map { result ->
-            when (result) {
-                is DataResult.Success -> TaskScreenState(tasks = result.data)
-                is DataResult.Error -> TaskScreenState(isError = true)
-            }
+    private val today = MutableStateFlow(value = LocalDate.now())
+    private val selectedDate = MutableStateFlow(value = today.value)
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val state: StateFlow<TaskScreenState> = combine(
+        today,
+        selectedDate,
+        selectedDate.flatMapLatest { date -> fetchTasksUseCase.execute(date = date) },
+    ) { today, selectedDate, result ->
+        when (result) {
+            is DataResult.Success -> TaskScreenState(
+                today = today,
+                selectedDate = selectedDate,
+                tasks = result.data,
+            )
+
+            is DataResult.Error -> TaskScreenState(
+                today = today,
+                selectedDate = selectedDate,
+                isError = true,
+            )
         }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = TaskScreenState(isLoadingTasks = true),
-        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+        initialValue = TaskScreenState(
+            today = today.value,
+            selectedDate = selectedDate.value,
+            isLoadingTasks = true,
+        ),
+    )
 
     private val _events = Channel<TaskEvent>(capacity = Channel.BUFFERED)
     val events = _events.receiveAsFlow()
+
+    init {
+        viewModelScope.launch {
+            today.collect { date ->
+                deleteTasksBeforeUseCase.execute(
+                    date = date.minusDays(TaskScreenState.DAYS_BEFORE_TODAY),
+                )
+            }
+        }
+    }
+
+    fun selectDate(date: LocalDate) {
+        selectedDate.value = date
+    }
+
+    // The ViewModel outlives midnight while the app is in the background, so the date row
+    // has to move on. The selection resets because the old one may have left the row.
+    fun refreshToday() {
+        val now = LocalDate.now()
+        if (now != today.value) {
+            today.value = now
+            selectedDate.value = now
+        }
+    }
 
     fun addTask(title: String, isImportant: Boolean) {
         val task = TaskModel(
             id = 0,
             title = title,
             isImportant = isImportant,
-            date = System.currentTimeMillis(),
+            date = selectedDate.value.toStartOfDayMillis(),
         )
         viewModelScope.launch {
             val event = when (addTaskUseCase.execute(task = task)) {
@@ -101,10 +151,21 @@ class TaskViewModel @Inject constructor(
 
 @Immutable
 data class TaskScreenState(
+    val today: LocalDate = LocalDate.now(),
+    val selectedDate: LocalDate = today,
     val isLoadingTasks: Boolean = false,
     val isError: Boolean = false,
     val tasks: List<TaskModel> = emptyList(),
-)
+) {
+    val dates: List<LocalDate> = (-DAYS_BEFORE_TODAY..DAYS_AFTER_TODAY).map { offset ->
+        today.plusDays(offset)
+    }
+
+    companion object {
+        const val DAYS_BEFORE_TODAY = 2L
+        const val DAYS_AFTER_TODAY = 4L
+    }
+}
 
 sealed interface TaskEvent {
     data class TaskAdded(
