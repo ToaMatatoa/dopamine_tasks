@@ -206,7 +206,7 @@ private fun HabitDaysPicker(
             text = stringResource(id = R.string.habit_days_helper),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
+            textAlign = TextAlign.Start,
             modifier = Modifier
                 .fillMaxWidth(),
         )

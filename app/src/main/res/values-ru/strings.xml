@@ -39,6 +39,10 @@
   <string name="habit_text_label">Привычка</string>
   <string name="habit_days_helper">Количество дней нельзя будет изменить, поэтому, пожалуйста, выбирайте внимательно.</string>
   <string name="habit_finished_mark">(завершена)</string>
+  <string name="habit_day_checked">Потрясающе! Ещё один день, и эта привычка всё ближе к тому, чтобы стать частью вашей жизни!</string>
+  <string name="habit_all_days_checked">Просто невероятно! Теперь эта привычка — часть вашей жизни!</string>
+  <string name="habit_some_days_missed">Потрясающе! Даже с парой пропусков это большой шаг к тому, чтобы привычка стала частью вашей жизни!</string>
+  <string name="fetch_habits_error">Возникла ошибка во время загрузки привычек. Пожалуйста, перезайдите в приложение</string>
   <plurals name="habit_days_count">
     <item quantity="one">%d день</item>
     <item quantity="few">%d дня</item>
