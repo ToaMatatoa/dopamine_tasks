@@ -34,4 +34,15 @@
   <!-- Habits screen -->
   <string name="habits_title">Dopamine Habit</string>
   <string name="habit_tab_empty">Empty</string>
+  <string name="habit_setup">Setup habit</string>
+  <string name="habit_edit">Edit habit</string>
+  <string name="habit_delete_question">Delete this habit?</string>
+  <string name="habit_tab_title_label">Tab title</string>
+  <string name="habit_text_label">Habit</string>
+  <string name="habit_days_helper">You won\'t be able to change the number of days later, so please choose carefully.</string>
+  <string name="habit_text_counter" translatable="false">%1$d/%2$d</string>
+  <plurals name="habit_days_count">
+    <item quantity="one">%d day</item>
+    <item quantity="other">%d days</item>
+  </plurals>
 </resources>

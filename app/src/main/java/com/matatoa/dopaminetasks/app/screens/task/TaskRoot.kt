@@ -17,6 +17,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.matatoa.dopaminetasks.R.string
+import com.matatoa.dopaminetasks.designsystem.InfoDialog
 
 @Composable
 fun TaskRoot(
@@ -64,7 +65,7 @@ fun TaskRoot(
     }
 
     milestone?.let { completion ->
-        TaskCompletedDialog(
+        InfoDialog(
             message = stringResource(id = completion.messageRes()),
             onDismiss = { milestone = null },
         )

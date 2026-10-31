@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.app.screens.task
+package com.matatoa.dopaminetasks.designsystem
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
@@ -20,7 +20,7 @@ import com.matatoa.dopaminetasks.R
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 @Composable
-fun TaskCompletedDialog(
+fun InfoDialog(
     message: String,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
@@ -64,9 +64,9 @@ fun TaskCompletedDialog(
 
 @Preview
 @Composable
-private fun TaskCompletedDialogPreview() {
+private fun InfoDialogPreview() {
     DopamineTasksTheme {
-        TaskCompletedDialog(
+        InfoDialog(
             message = "You've completed all tasks for today! That's real dopamine!",
             onDismiss = {},
         )

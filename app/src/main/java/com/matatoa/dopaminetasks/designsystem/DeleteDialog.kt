@@ -1,4 +1,4 @@
-package com.matatoa.dopaminetasks.app.screens.task
+package com.matatoa.dopaminetasks.designsystem
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
@@ -15,25 +15,20 @@ import com.matatoa.dopaminetasks.R
 import com.matatoa.dopaminetasks.designsystem.theme.DopamineTasksTheme
 
 @Composable
-fun DeleteTaskDialog(
-    isImportant: Boolean,
+fun DeleteDialog(
+    title: String,
     onConfirm: () -> Unit,
     onDismiss: () -> Unit,
     modifier: Modifier = Modifier,
+    titleColor: Color = Color.Unspecified,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = stringResource(
-                    id = if (isImportant) {
-                        R.string.task_delete_important_question
-                    } else {
-                        R.string.task_delete_common_question
-                    },
-                ),
+                text = title,
                 style = MaterialTheme.typography.titleMedium,
-                color = if (isImportant) MaterialTheme.colorScheme.tertiary else Color.Unspecified,
+                color = titleColor,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -55,10 +50,11 @@ fun DeleteTaskDialog(
 
 @Preview
 @Composable
-private fun DeleteTaskDialogImportantPreview() {
+private fun DeleteDialogImportantPreview() {
     DopamineTasksTheme {
-        DeleteTaskDialog(
-            isImportant = true,
+        DeleteDialog(
+            title = "Delete this habit?",
+            titleColor = MaterialTheme.colorScheme.tertiary,
             onConfirm = {},
             onDismiss = {},
         )
@@ -67,10 +63,10 @@ private fun DeleteTaskDialogImportantPreview() {
 
 @Preview
 @Composable
-private fun DeleteTaskDialogCommonPreview() {
+private fun DeleteDialogCommonPreview() {
     DopamineTasksTheme {
-        DeleteTaskDialog(
-            isImportant = false,
+        DeleteDialog(
+            title = "Delete this common task?",
             onConfirm = {},
             onDismiss = {},
         )
