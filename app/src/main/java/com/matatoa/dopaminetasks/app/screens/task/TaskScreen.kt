@@ -62,7 +62,9 @@ fun TaskScreen(
 
         when {
             state.isLoadingTasks -> ScreenLoadingState()
+
             state.isError -> ScreenErrorState()
+
             state.tasks.isEmpty() -> ScreenEmptyState(
                 onAddTaskClick = { isImportant -> addTaskIsImportant = isImportant },
             )
